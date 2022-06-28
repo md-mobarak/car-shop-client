@@ -16,7 +16,7 @@ const Navbar = () => {
                             <li><NavLink className='text-white' to='/login'>Login</NavLink></li>
                         </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost normal-case text-xl text-white">daisyUI</NavLink>
+                    <NavLink to='/' className="btn btn-ghost normal-case text-xl text-white">CAR SHOP</NavLink>
 
 
                 </div>
