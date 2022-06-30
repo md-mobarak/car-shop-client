@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import CarDetails from './component/CarDetails/CarDetails';
 import Login from './component/Login/Login';
 import SignUp from './component/Login/SignUp';
+import RequireAuth from './component/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/carDetails/:id' element={<CarDetails></CarDetails>}></Route>
+        <Route path='/carDetails/:id' element={<RequireAuth><CarDetails></CarDetails></RequireAuth>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>

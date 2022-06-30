@@ -1,7 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import auth from '../../firebase.init';
 
 const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+
     return (
         <div>
             <div class="navbar bg-secondary">
@@ -13,7 +18,10 @@ const Navbar = () => {
                         <ul tabindex="0" class=" menu menu-compact dropdown-content mt-3 p-2 shadow bg-secondary rounded-box w-52">
                             <li><NavLink className='my-3 text-white' to='/about'>About</NavLink></li>
                             <li><NavLink className='text-white' to='/contact'>Contact</NavLink></li>
-                            <li><NavLink className='text-white' to='/login'>Login</NavLink></li>
+                            {
+                                user ? <li><NavLink onClick={() => signOut(auth)} className='text-white' to='/login'>LogOut</NavLink></li> :
+                                    <li><NavLink className='text-white' to='/login'>Login</NavLink></li>
+                            }
                         </ul>
                     </div>
                     <NavLink to='/' className="btn btn-ghost normal-case text-xl text-white">CAR SHOP</NavLink>
@@ -22,9 +30,14 @@ const Navbar = () => {
                 </div>
                 <div class="navbar-end hidden lg:flex">
                     <ul class="menu menu-horizontal p-0">
+
+                        {user && <li><NavLink className='text-white mr-3' to='/dashboard'>Dashboard</NavLink></li>}
                         <li><NavLink className='text-white' to='/contact'>Contact</NavLink></li>
                         <li><NavLink className='mx-3 text-white' to='/about'>About</NavLink></li>
-                        <li><NavLink className='text-white' to='/login'>Login</NavLink></li>
+                        {
+                            user ? <li><NavLink onClick={() => signOut(auth)} className='text-white' to='/login'>LogOut</NavLink></li> :
+                                <li><NavLink className='text-white' to='/login'>Login</NavLink></li>
+                        }
                     </ul>
                 </div>
 
